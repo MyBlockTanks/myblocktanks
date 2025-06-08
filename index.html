@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BlockTanks League Battle Manager</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <h1>League Battle Manager</h1>
+  <div class="container">
+    <section>
+      <div class="form-row">
+        <input type="text" id="username" placeholder="Username" />
+		<input type="text" id="userKdr" placeholder="User K/D" />
+        <label><input type="checkbox" id="isOfficial" /> Match Official</label>
+        <button onclick="addPlayer()">Add Player</button>
+      </div>
+    </section>
+
+    <section>
+      <div class="form-row">
+        <select id="player1"></select>
+        <select id="player2"></select>
+        <input type="text" id="score" placeholder="Score (e.g., 2-1)" />
+        <select id="approvedBy"></select>
+        <button onclick="addMatch()">Add Match</button>
+      </div>
+    </section>
+
+    <section>
+      <h2>Leaderboard</h2>
+      <div id="leaderboardContainer">
+        <table id="leaderboardTable">
+          <thead>
+            <tr>
+              <th>Position</th>
+              <th>User</th>
+              <th>Matches</th>
+              <th>Wins</th>
+              <th>Losses</th>
+              <th>Draws</th>
+              <th>Kills</th>
+              <th>Deaths</th>
+              <th>K/D</th>
+              <th>Points</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <div class="button-row">
+      <button onclick="exportJSON()">Export JSON</button>
+      <input type="file" onchange="importJSON(event)" />
+      <button onclick="exportStatsImage()">Export Stats as Image</button>
+    </div>
+  </div>
+  <canvas id="exportCanvas" style="display:none;"></canvas>
+  <script src="./app.js"></script>
+</body>
+</html>
