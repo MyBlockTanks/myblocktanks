@@ -121,9 +121,6 @@ function calculateStats() {
       }
     }
   })
-for (let user in stats) {
-  stats[user].points = Math.round(stats[user].points * 100) / 100
-}	
   return stats
 }
 
@@ -146,7 +143,7 @@ function refreshLeaderboard() {
       <td>${p.kills}</td>
       <td>${p.deaths}</td>
       <td>${p.kd}</td>
-      <td>${p.points.toFixed(2)}</td>
+      <td>${formatRoundedPoints(p.points)}</td>
     `
   })
 }
@@ -225,7 +222,7 @@ function exportStatsImage() {
     ctx.fillStyle = "white"
     let row = [
       (i + 1), p.username, p.matches, p.wins, p.losses, p.draws,
-      p.kills, p.deaths, p.kd, p.points.toFixed(2)
+      p.kills, p.deaths, p.kd, formatRoundedPoints(p.points)
     ]
 
     let xPos = 0
@@ -260,4 +257,14 @@ function exportStatsImage() {
   link.href = canvas.toDataURL("image/png")
   link.download = "leaderboard.png"
   link.click()
+}
+
+function formatNumber(n) {
+  n = Number(n)
+  if (Number.isInteger(n)) return n.toString()
+  return n.toFixed(2).replace(/\.?0+$/, "")
+}
+
+function formatRoundedPoints(n) {
+  return Math.round(n).toString()
 }
