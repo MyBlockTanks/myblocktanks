@@ -121,7 +121,9 @@ function calculateStats() {
       }
     }
   })
-
+for (let user in stats) {
+  stats[user].points = Math.round(stats[user].points * 100) / 100
+}	
   return stats
 }
 
