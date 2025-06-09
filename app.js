@@ -205,7 +205,7 @@ function exportStatsImage() {
   canvas.height = height
 
   ctx.clearRect(0, 0, width, height)
-  ctx.font = "16px Inter"
+  ctx.font = "16px Passion One"
   ctx.textBaseline = "middle"
   ctx.textAlign = "center"
 
