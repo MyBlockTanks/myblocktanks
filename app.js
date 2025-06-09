@@ -101,25 +101,30 @@ function calculateStats() {
     let kdr1 = parseFloat(p1.kd)
     let kdr2 = parseFloat(p2.kd)
 
+    let winner = null
+
     if (s1 === s2) {
       let scale1 = kdr1 > kdr2 ? 1 : kdr1 === kdr2 ? 1.5 : 2
       let scale2 = kdr2 > kdr1 ? 1 : kdr2 === kdr1 ? 1.5 : 2
       p1.points += s1 * scale1
       p2.points += s2 * scale2
-    } 
-	else {
+    }
+    else {
       let p1Base = 12 * ((5 * s1 - 4 * s2) / 5) + 15 + 12 * (p2.userKdr - p1.userKdr)
       let p2Base = 12 * ((5 * s2 - 4 * s1) / 5) + 15 + 12 * (p1.userKdr - p2.userKdr)
 
       if (s1 > s2) {
+        winner = m.player1
         p1.points += p1Base
+        p2.points -= p1Base
+      }
+      else {
+        winner = m.player2
         p2.points += p2Base
-      } 
-	  else {
-        p1.points += p2Base
-        p2.points += p1Base
+        p1.points -= p2Base
       }
     }
+    m.winner = winner
   })
   return stats
 }
